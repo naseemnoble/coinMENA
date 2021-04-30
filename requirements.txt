@@ -1,3 +1,4 @@
 django-filter
 djangorestframework
 djangorestframework-api-key
+requests
