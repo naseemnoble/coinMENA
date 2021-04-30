@@ -2,3 +2,4 @@ django-filter
 djangorestframework
 djangorestframework-api-key
 requests
+python-decouple
