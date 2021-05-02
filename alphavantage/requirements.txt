@@ -3,3 +3,4 @@ djangorestframework
 djangorestframework-api-key
 requests
 python-decouple
+psycopg2-binary

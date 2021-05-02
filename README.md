@@ -3,40 +3,51 @@ coinMENA is REST API with Python django rest api framework.
 
 ## Steps for running
 
-Install virtualenv, It is a tool to create isolated Python environments
+Clone project 
 ```bash
-pip install virtualenv
-```
-Create a virtual environment 'coinMENA_venv' for a project (Python 3.x interpreter used)
-```
-virtualenv -p /usr/bin/python3 coinMENA_venv
-```
-Activate virtualenv 'coinMENA_venv'
-```
-source coinMENA_venv/bin/activate
-```
-clone project from github
-```
 git clone https://github.com/naseemnoble/coinMENA.git
 ```
-Change to Project repository directory
+Change directory to root folder
 ```
-cd coinMENA
+cd coinMENA/alphavantage
 ```
-Install django and rest api dependencies
+Build Dockerfile
+```buildoutcfg
+docker build .
 ```
-pip install -r requirements.txt
+Compose Docker yaml file
+```buildoutcfg
+docker-compose up
 ```
-Change to Project root directory
+##Note
+Django rest API key is '**8lXXuD7E.Y5JMk864MngArHLQGZpnyCfMDDCMdh3F**'. 
+
+You can config your own **Alphavantage API KEY** in **.env** file (Refer .env_template)
+## APIs
+POST requesting of the price from alphavantage.
+```buildoutcfg
+curl --location --request POST 'http://127.0.0.1:8000/instrument/exchangerate/' \
+--header 'Authorization: Api-Key 8lXXuD7E.Y5JMk864MngArHLQGZpnyCfMDDCMdh3F' \
+--form 'from_currency="BTC"' \
+--form 'to_currency="USD"' \
+--form 'interval_min="60"'
 ```
-cd alphavantage
+GET return Exchange rate
+```buildoutcfg
+curl --location --request GET 'http://127.0.0.1:8000/instrument/exchangerate/' \
+--header 'Authorization: Api-Key 8lXXuD7E.Y5JMk864MngArHLQGZpnyCfMDDCMdh3F' \
+--form 'from_currency="BTC"' \
+--form 'to_currency="USD"'
 ```
-Migrate database
+## Data
+SQLite database file db.sqlite3
+
+Tables : instruments_exchangerate, instruments_pricerequest
+```buildoutcfg
+$ sqlite3 db.sqlite3 
+SQLite version 3.31.1 2020-01-27 19:55:54
+Enter ".help" for usage hints.
+sqlite> .mode column
+sqlite> select * from instruments_exchangerate;
+1           BTC                 Bitcoin             USD               United States Dollar  57684.07       2021-05-02 02:51:01  UTC         57680.88    57680.89
 ```
-python manage.py migrate
-```
-Run server
-```
-python manage.py runserver
-or
-python manage.py runserver 8080 (Change port to 8080)

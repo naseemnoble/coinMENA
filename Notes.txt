@@ -1,5 +1,5 @@
-POST http://127.0.0.1:8000/instrument/requestprice/
+POST http://127.0.0.1:8000/instrument/exchangerate/
 Under Header
-Authorization   Api-Key viG6WH5M.ssNpQLFA5Zmco9AtWfsm8vNVG2DWCHDs
+Authorization   Api-Key 8lXXuD7E.Y5JMk864MngArHLQGZpnyCfMDDCMdh3F
 Content-Type    application/json
 
